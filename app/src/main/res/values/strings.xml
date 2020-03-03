@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">TechNewsSample</string>
-
-    <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
+
+    <string name="general_error_state_message_something_wrong">Sorry, something went wrong</string>
+    <string name="general_error_state_message_try_again">Please try again later.</string>
 </resources>

@@ -1,4 +1,4 @@
-package news.agoda.com.sample;
+package news.agoda.com.sample.newslist.view.adapter;
 
 import android.content.Context;
 import android.net.Uri;
@@ -15,6 +15,9 @@ import com.facebook.imagepipeline.request.ImageRequest;
 
 import java.util.List;
 
+import news.agoda.com.sample.R;
+import news.agoda.com.sample.core.network.model.NewsFeed;
+
 public class NewsListAdapter extends ArrayAdapter {
     private static class ViewHolder {
         TextView newsTitle;
@@ -27,11 +30,14 @@ public class NewsListAdapter extends ArrayAdapter {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        NewsEntity newsEntity = (NewsEntity) getItem(position);
-        List<MediaEntity> mediaEntityList = newsEntity.getMediaEntity();
+        NewsFeed.Result newsEntity = (NewsFeed.Result) getItem(position);
+        List<NewsFeed.Multimedia> mediaEntityList = newsEntity.getMultimedia();
         String thumbnailURL = "";
-        MediaEntity mediaEntity = mediaEntityList.get(0);
-        thumbnailURL = mediaEntity.getUrl();
+
+        if (mediaEntityList.size() > 0) {
+            NewsFeed.Multimedia mediaEntity = mediaEntityList.get(0);
+            thumbnailURL = mediaEntity.getUrl();
+        }
 
         ViewHolder viewHolder;
         if (convertView == null) {
@@ -50,4 +56,5 @@ public class NewsListAdapter extends ArrayAdapter {
         viewHolder.imageView.setController(draweeController);
         return convertView;
     }
+
 }
